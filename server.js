@@ -13,13 +13,16 @@ const db = mysql.createConnection(
         //Your MySQL username,
         user: 'root',
         //Your MySQL password
-        password: '***',
+        password: '****',
         database: 'election'
     },
     console.log('Connected to the election database.')
 );
-
-
+//will run the SQL query, the call back function captures the responses from the query in 2 variables, 'err' for error response;
+//and 'rows' which is the database query response.
+db.query(`SELECT * FROM candidates`, (err,rows) => {
+    console.log(rows);
+});
 //Default response for any other request (Not Found)
 app.use((req, res) => {
     res.status(404).end();
